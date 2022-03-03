@@ -1,0 +1,61 @@
+Ex.No:13					     XML DATABASE CREATION	
+
+AIM:
+    To develop an application to read the details of the selected country stored in a Xml database and display back to the user.		
+
+PROCEDURE:
+
+1.	Open Microsoft Visual Studio 2008 and Create a new Windows application.
+2.	From the menu select Project > Add New item > Xml File
+3.	Enter the file name as countries.xml and click ADD button. 
+Now edit the following xml code
+<countries>
+		<country>
+			   <name>India</name>
+                  <year>1988</year>
+			   <sports>Hockey</sports>
+          </country>
+
+<country>
+			   <name>Srilanka</name>
+                  <year>1996</year>
+			   <sports>Cricket</sports>
+          </country>
+
+<country>
+			   <name>England</name>
+                  <year>1979</year>
+			   <sports>Football</sports>
+          </country>
+</countries>
+
+4.	Save xml file and copy full path
+5.	On Form1 drag and drop DataGridView control and Dataset control from tool box.
+6.	For the Dataset, Select UnTyped dataset option and click OK
+7.	Set the Name property of the Dataset as ds1.
+8.	Type the code in Form1_load() event procedure.
+9.	Run the application
+
+PROGRAM:
+using System;
+using System.Windows.Forms;
+
+namespace Ex
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ds1.ReadXml(@"C:\Users\Admin\Documents\Visual Studio  
+                        2008\Projects\Ex\Ex\XMLFile1.xml");
+            dataGridView1.DataSource = ds1.Tables[0];
+        }
+    }
+}
+
+
