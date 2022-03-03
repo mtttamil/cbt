@@ -1,0 +1,63 @@
+
+Ex.No:14					    READING XML DATABASE			
+
+AIM :
+	To develop a windows application to read an Xml document containing subject, marks scored and year of passing into a dataset.
+PROCEDURE:
+
+1.	Open Microsoft Visual Studio 2008 and Create a new Windows application.
+2.	From the menu select Project > Add New item > Xml File
+3.	Enter the file name as student.xml and click ADD button. 
+Now edit the following xml code
+<student>
+		<stud>
+			   <name>Martin</name>
+                  <dept>Civil</dept>
+			   <marks>567</marks>
+                  <year>2012</year>
+          </stud>
+
+          <stud>
+			   <name>Jeba</name>
+                  <dept>ECE</dept>
+			   <marks>480</marks>
+                  <year>2017</year>
+          </stud>
+<stud>
+			   <name>Banu</name>
+                  <dept>CSE</dept>
+			   <marks>520</marks>
+                  <year>2014</year>
+          </stud>
+
+</student>
+
+4.	Save xml file and copy full path
+5.	On Form1 drag and drop DataGridView control and Dataset control from tool box.
+6.	For the Dataset, Select UnTyped dataset option and click OK
+7.	Set the Name property of the Dataset as ds1.
+8.	Type the code in Form1_load() event procedure.
+9.	Run the application
+
+PROGRAM:
+using System;
+using System.Windows.Forms;
+
+namespace Ex
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ds1.ReadXml(@"C:\Users\Admin\Documents\Visual Studio  
+                        2008\Projects\Ex\Ex\XMLFile1.xml");
+            dataGridView1.DataSource = ds1.Tables[0];
+        }
+    }
+}
+
