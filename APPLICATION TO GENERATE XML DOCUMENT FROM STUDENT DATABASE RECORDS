@@ -1,0 +1,39 @@
+EX.NO:17
+APPLICATION TO GENERATE XML DOCUMENT FROM STUDENT DATABASE RECORDS
+AIM:
+    To develop a Windows application to read students records from Database using ADO.NET and generate XML document containing students records
+
+PROCEDURE:
+1.	Create an SQL server database named student. In that database create  a table name stud  and insert few records.
+2.	Open Visual Studio and create a new Windows Application.  Design Form1 with a DataGridView control.
+3.	From menu, select   Data > Add New DataSource > Database > NewConnection.  Add Connection dialogbox appears.  Type the Server Name and Click Refresh.  From the combo box,  Select or Enter a Database Name Option, choose student database. Click Test Connection > OK > OK.
+4.	Copy the Connection String. Click Next > Next > Click the Tables object > Finish. 
+5.	Enter the code.   Run the application.
+
+PROGRAM:
+using System.Data.SqlClient;     //add this line
+
+namespace Ex17
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+       
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection("Data Source=HOD-PC\\SQLEXPRESS1;Initial Catalog=student;Integrated Security=True");
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select * from stud", conn);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            ds.Tables[0].WriteXml(@"D:\sal.xml");
+            dataGridView1.DataSource = ds.Tables[0];
+            MessageBox.Show("XML DOCUMENT IS GENERATED AT LOCATION D DRIVE AS SAL.XML");
+
+        }
+    }
+}
